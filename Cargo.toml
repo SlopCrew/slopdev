@@ -1,0 +1,14 @@
+[package]
+name = "slopdev"
+description = "Slop Crew development build launcher"
+authors = ["NotNite <hi@notnite.com>"]
+license = "MIT"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.75"
+directories = "5.0.1"
+eframe = "0.23.0"
+reqwest = { version = "0.11.22", features = ["blocking", "stream"] }
+zip = "0.6.6"
