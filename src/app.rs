@@ -27,7 +27,16 @@ pub struct SlopDev {
 impl SlopDev {
     fn start_game(&mut self) {
         // TODO: bad assumption
-        let steam_exe = "C:\\Program Files (x86)\\Steam\\Steam.exe";
+        let custom_steam_exe_path = self.work_dir.join("steam_path.txt");
+        let steam_exe = if custom_steam_exe_path.exists() {
+            std::fs::read_to_string(custom_steam_exe_path)
+                .expect("failed to read custom steam exe path")
+                .trim()
+                .to_string()
+        } else {
+            "C:\\Program Files (x86)\\Steam\\Steam.exe".to_string()
+        };
+
         std::process::Command::new(steam_exe)
             .arg("-applaunch")
             .arg("1353230")
@@ -268,5 +277,8 @@ impl eframe::App for SlopDev {
                 );
             }
         });
+
+        let _60fps = std::time::Duration::from_millis(1000 / 60);
+        ctx.request_repaint_after(_60fps);
     }
 }
