@@ -28,7 +28,7 @@ impl SlopDev {
     fn start_game(&mut self) {
         // TODO: bad assumption
         let steam_exe = "C:\\Program Files (x86)\\Steam\\Steam.exe";
-        let mut process = std::process::Command::new(steam_exe)
+        std::process::Command::new(steam_exe)
             .arg("-applaunch")
             .arg("1353230")
             .arg("--doorstop-enable")
